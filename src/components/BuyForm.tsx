@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FormInput } from "./FormInput";
 import { Button } from "./Button";
-import { dresses } from "../data/dresses";
 import { BuyRequest } from "../types";
 import { storage } from "../utils/storage";
 import { logActivity, ACTIVITY_ACTIONS } from "../utils/activity";
@@ -81,23 +80,8 @@ export const BuyForm: React.FC<BuyFormProps> = ({ onSuccess }) => {
 		}, 1000);
 	};
 
-	const dressOptions = dresses.map((dress) => ({
-		value: dress.id,
-		label: `${dress.name} - ${dress.price} EGP (${dress.id})`,
-	}));
-
 	return (
 		<form onSubmit={handleSubmit} className="space-y-4">
-			<FormInput
-				label="Select Dress"
-				name="dressId"
-				value={formData.dressId}
-				onChange={handleChange}
-				required
-				error={errors.dressId}
-				options={dressOptions}
-			/>
-
 			<FormInput
 				label="Your Name"
 				name="customerName"

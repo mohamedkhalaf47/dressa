@@ -43,6 +43,22 @@ export interface RentRequest {
 	timestamp: string;
 }
 
+export interface RentOutRequest {
+	id: string;
+	title: string;
+	description: string;
+	size: string;
+	price: number;
+	startDate: string;
+	endDate: string;
+	condition: string;
+	contactName: string;
+	email: string;
+	phone: string;
+	photos: string[];
+	timestamp: string;
+}
+
 export interface ActivityLog {
 	id: string;
 	action: string;

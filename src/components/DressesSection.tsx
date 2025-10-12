@@ -2,9 +2,46 @@ import React, { useEffect, useRef } from "react";
 import { DressCard } from "./DressCard";
 import { dresses } from "../data/dresses";
 import { logActivity, ACTIVITY_ACTIONS } from "../utils/activity";
+import { Dress } from "../types";
 
-export const DressesSection: React.FC = () => {
+interface DressesSectionProps {
+	dresses?: Dress[];
+	onBuyDress?: (dress: Dress) => void;
+	onRentDress?: (dress: Dress) => void;
+	onViewDetails?: (dress: Dress) => void;
+}
+
+export const DressesSection: React.FC<DressesSectionProps> = ({
+	dresses: dressesProp,
+	onBuyDress,
+	onRentDress,
+	onViewDetails,
+}) => {
 	const sectionRef = useRef<HTMLDivElement>(null);
+
+	const handleBuyClick = (dress: Dress) => {
+		logActivity(ACTIVITY_ACTIONS.BUTTON_CLICK, {
+			action: "buy",
+			dressId: dress.id,
+		});
+		onBuyDress?.(dress);
+	};
+
+	const handleRentClick = (dress: Dress) => {
+		logActivity(ACTIVITY_ACTIONS.BUTTON_CLICK, {
+			action: "rent",
+			dressId: dress.id,
+		});
+		onRentDress?.(dress);
+	};
+
+	const handleViewDetails = (dress: Dress) => {
+		logActivity(ACTIVITY_ACTIONS.BUTTON_CLICK, {
+			action: "view_details",
+			dressId: dress.id,
+		});
+		onViewDetails?.(dress);
+	};
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -18,13 +55,14 @@ export const DressesSection: React.FC = () => {
 			{ threshold: 0.3 }
 		);
 
-		if (sectionRef.current) {
-			observer.observe(sectionRef.current);
+		const currentElement = sectionRef.current;
+		if (currentElement) {
+			observer.observe(currentElement);
 		}
 
 		return () => {
-			if (sectionRef.current) {
-				observer.unobserve(sectionRef.current);
+			if (currentElement) {
+				observer.unobserve(currentElement);
 			}
 		};
 	}, []);
@@ -43,13 +81,18 @@ export const DressesSection: React.FC = () => {
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-					{dresses.map((dress, index) => (
+					{(dressesProp || dresses).map((dress, index) => (
 						<div
 							key={dress.id}
 							className="animate-fadeInUp"
 							style={{ animationDelay: `${index * 100}ms` }}
 						>
-							<DressCard dress={dress} />
+							<DressCard
+								dress={dress}
+								onBuyClick={handleBuyClick}
+								onRentClick={handleRentClick}
+								onViewDetails={handleViewDetails}
+							/>
 						</div>
 					))}
 				</div>

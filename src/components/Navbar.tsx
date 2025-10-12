@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { logActivity, ACTIVITY_ACTIONS } from "../utils/activity";
-import Logo from "../assets/dressa_logo.jpeg"
+import Logo from "../assets/dressa_logo.jpeg";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar: React.FC = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -16,20 +17,33 @@ export const Navbar: React.FC = () => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	const scrollToSection = (sectionId: string) => {
-		const element = document.getElementById(sectionId);
-		if (element) {
-			element.scrollIntoView({ behavior: "smooth" });
-			setIsMobileMenuOpen(false);
-			logActivity(ACTIVITY_ACTIONS.BUTTON_CLICK, { section: sectionId });
+	const navigate = useNavigate();
+
+	const handleNavigation = (path: string, label: string) => {
+		if (path === "/" || !path.includes("#")) {
+			// Regular page navigation
+			navigate(path);
+		} else if (window.location.pathname === "/") {
+			// We're already on the home page, just scroll to the section
+			const sectionId = path.split("#")[1];
+			const element = document.getElementById(sectionId);
+			if (element) {
+				element.scrollIntoView({ behavior: "smooth" });
+			}
+		} else {
+			// Navigate to home page with hash
+			navigate(path);
 		}
+
+		setIsMobileMenuOpen(false);
+		logActivity(ACTIVITY_ACTIONS.PAGE_LOAD, { path, section: label });
 	};
 
 	const navLinks = [
-		{ label: "Home", id: "home" },
-		{ label: "Dresses", id: "dresses" },
-		{ label: "Sell", id: "actions" },
-		{ label: "Contact", id: "footer" },
+		{ label: "Home", path: "/" },
+		{ label: "Dresses", path: "/#dresses" },
+		{ label: "Sell", path: "/#actions" },
+		{ label: "Contact", path: "/#footer" },
 	];
 
 	return (
@@ -42,7 +56,7 @@ export const Navbar: React.FC = () => {
 				<div className="flex items-center justify-between h-20">
 					<div
 						className="flex items-center space-x-2 cursor-pointer"
-						onClick={() => scrollToSection("home")}
+						onClick={() => handleNavigation("/", "Home")}
 					>
 						<div className="w-14 h-14 rounded-full flex items-center justify-center gap-2">
 							<img src={Logo} alt="Logo" className="w-14 h-14 rounded-full" />
@@ -55,8 +69,8 @@ export const Navbar: React.FC = () => {
 					<div className="hidden md:flex items-center space-x-8">
 						{navLinks.map((link) => (
 							<button
-								key={link.id}
-								onClick={() => scrollToSection(link.id)}
+								key={link.path}
+								onClick={() => handleNavigation(link.path, link.label)}
 								className="text-charcoal font-poppins font-medium hover:text-rose-gold transition-colors duration-200"
 							>
 								{link.label}
@@ -83,8 +97,8 @@ export const Navbar: React.FC = () => {
 					<div className="px-4 py-6 space-y-4">
 						{navLinks.map((link) => (
 							<button
-								key={link.id}
-								onClick={() => scrollToSection(link.id)}
+								key={link.path}
+								onClick={() => handleNavigation(link.path, link.label)}
 								className="block w-full text-left text-charcoal font-poppins font-medium py-2 hover:text-rose-gold transition-colors"
 							>
 								{link.label}

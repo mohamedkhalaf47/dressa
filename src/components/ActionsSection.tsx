@@ -1,17 +1,17 @@
 import React from "react";
-import { ShoppingBag, Tag, Calendar } from "lucide-react";
+import { Tag, Calendar } from "lucide-react";
 import { logActivity, ACTIVITY_ACTIONS } from "../utils/activity";
 
 interface ActionsSectionProps {
 	onBuyClick: () => void;
 	onSellClick: () => void;
 	onRentClick: () => void;
+	onRentOutClick: () => void;
 }
 
 export const ActionsSection: React.FC<ActionsSectionProps> = ({
-	onBuyClick,
 	onSellClick,
-	onRentClick,
+	onRentOutClick,
 }) => {
 	const handleActionClick = (action: string, callback: () => void) => {
 		logActivity(ACTIVITY_ACTIONS.BUTTON_CLICK, { action });
@@ -19,13 +19,6 @@ export const ActionsSection: React.FC<ActionsSectionProps> = ({
 	};
 
 	const actions = [
-		{
-			icon: ShoppingBag,
-			title: "Buy a Dress",
-			description: "Find your perfect pre-loved dress and give it a new home",
-			color: "bg-rose-gold",
-			onClick: () => handleActionClick("buy", onBuyClick),
-		},
 		{
 			icon: Tag,
 			title: "Sell Your Dress",
@@ -36,10 +29,11 @@ export const ActionsSection: React.FC<ActionsSectionProps> = ({
 		},
 		{
 			icon: Calendar,
-			title: "Rent a Dress",
-			description: "Borrow a stunning dress for your special occasion",
+			title: "Rent Out Your Dress",
+			description:
+				"Share your beautiful dress and earn while helping others shine",
 			color: "bg-rose-gold",
-			onClick: () => handleActionClick("rent", onRentClick),
+			onClick: () => handleActionClick("rentout", onRentOutClick),
 		},
 	];
 
@@ -59,7 +53,7 @@ export const ActionsSection: React.FC<ActionsSectionProps> = ({
 					</p>
 				</div>
 
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 					{actions.map((action, index) => {
 						const Icon = action.icon;
 						return (

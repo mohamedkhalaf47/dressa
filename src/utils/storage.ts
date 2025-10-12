@@ -1,4 +1,10 @@
-import { BuyRequest, SellRequest, RentRequest, ActivityLog } from "../types";
+import {
+	BuyRequest,
+	SellRequest,
+	RentRequest,
+	RentOutRequest,
+	ActivityLog,
+} from "../types";
 import { STORAGE_KEYS, MAX_ACTIVITY_LOGS } from "../constants";
 
 export const storage = {
@@ -75,6 +81,29 @@ export const storage = {
 		} catch (error) {
 			console.error("Error reading activity logs:", error);
 			return [];
+		}
+	},
+
+	getRentOutRequests: (): RentOutRequest[] => {
+		try {
+			const data = localStorage.getItem(STORAGE_KEYS.RENT_OUT_REQUESTS);
+			return data ? JSON.parse(data) : [];
+		} catch (error) {
+			console.error("Error reading rent out requests:", error);
+			return [];
+		}
+	},
+
+	saveRentOutRequest: (request: RentOutRequest): void => {
+		try {
+			const requests = storage.getRentOutRequests();
+			requests.push(request);
+			localStorage.setItem(
+				STORAGE_KEYS.RENT_OUT_REQUESTS,
+				JSON.stringify(requests)
+			);
+		} catch (error) {
+			console.error("Error saving rent out request:", error);
 		}
 	},
 

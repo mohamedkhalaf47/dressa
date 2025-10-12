@@ -2,15 +2,17 @@ import React, { useRef } from "react";
 import { Upload, X } from "lucide-react";
 
 interface ImageUploadProps {
-	images: string[];
+	images?: string[];
 	onImagesChange: (images: string[]) => void;
 	maxImages?: number;
+	error?: string;
 }
 
 export const ImageUpload: React.FC<ImageUploadProps> = ({
-	images,
+	images = [],
 	onImagesChange,
 	maxImages = 5,
+	error,
 }) => {
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -97,6 +99,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
 				onChange={handleFileChange}
 				className="hidden"
 			/>
+			{error && <p className="mt-2 text-sm text-red-500">{error}</p>}
 		</div>
 	);
 };

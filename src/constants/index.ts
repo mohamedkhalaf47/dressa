@@ -12,6 +12,7 @@ export const STORAGE_KEYS = {
 	BUY_REQUESTS: "dressa_buyRequests",
 	SELL_REQUESTS: "dressa_sellRequests",
 	RENT_REQUESTS: "dressa_rentRequests",
+	RENT_OUT_REQUESTS: "dressa_rentOutRequests",
 	ACTIVITY_LOG: "dressa_activityLog",
 };
 
