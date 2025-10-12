@@ -1,7 +1,8 @@
 import React from "react";
-import { Instagram, Facebook, MessageCircle, Sparkles } from "lucide-react";
+import { Instagram, Facebook, MessageCircle } from "lucide-react";
 import { WHATSAPP_LINK } from "../constants";
 import { logActivity, ACTIVITY_ACTIONS } from "../utils/activity";
+import Logo from "../assets/dressa_logo.jpeg";
 
 export const Footer: React.FC = () => {
 	const currentYear = new Date().getFullYear();
@@ -40,17 +41,10 @@ export const Footer: React.FC = () => {
 			<div className="max-w-7xl mx-auto">
 				<div className="flex flex-col items-center space-y-6">
 					<div className="flex items-center space-x-3">
-						<div className="w-16 h-16 bg-rose-gold rounded-full flex items-center justify-center shadow-lg">
-							<Sparkles className="w-8 h-8 text-white" />
+						<div className="rounded-full flex items-center justify-center shadow-lg">
+							<img src={Logo} alt="Logo" className="w-[220px] rounded-full" />
 						</div>
-						<span className="text-3xl font-playfair font-bold text-charcoal">
-							Dressa
-						</span>
 					</div>
-
-					<p className="text-xl font-playfair italic text-charcoal">
-						Pre-Loved, Re-Imagined.
-					</p>
 
 					<div className="flex items-center space-x-6">
 						{socialLinks.map((social) => {

@@ -44,8 +44,11 @@ export const Navbar: React.FC = () => {
 						className="flex items-center space-x-2 cursor-pointer"
 						onClick={() => scrollToSection("home")}
 					>
-						<div className="w-14 h-14 rounded-full flex items-center justify-center">
+						<div className="w-14 h-14 rounded-full flex items-center justify-center gap-2">
 							<img src={Logo} alt="Logo" className="w-14 h-14 rounded-full" />
+							<span className="text-3xl font-playfair font-bold text-charcoal">
+								Dressa
+							</span>
 						</div>
 					</div>
 
