@@ -32,8 +32,8 @@ export const Hero: React.FC = () => {
 					<p className="text-xl md:text-2xl font-poppins text-gray-700 max-w-2xl mx-auto">
 						Giving every dress a second story.
 					</p>
-					<p className="text-sm md:text-md font-poppins text-red-700 mb-7">
-						Caution: All Dresses Here Are Pre-Owned
+					<p className="text-sm md:text-md font-poppins text-gray-700 mb-7 font-bold">
+						Every Pre-Owned Dress Is Professionally Cleaned, Quality-Checked and beautifully Packaged by Our Team to Guarantee Freshness and Reliability.
 					</p>
 				</div>
 
