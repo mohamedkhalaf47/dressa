@@ -16,13 +16,13 @@ export const Footer: React.FC = () => {
 		{
 			icon: Instagram,
 			label: "Instagram",
-			url: "https://instagram.com/dressa",
+			url: "/",
 			color: "hover:text-pink-600",
 		},
 		{
 			icon: Facebook,
 			label: "Facebook",
-			url: "https://facebook.com/dressa",
+			url: "/",
 			color: "hover:text-blue-600",
 		},
 		{
