@@ -29,8 +29,11 @@ export const Hero: React.FC = () => {
 				</div>
 
 				<div className="animate-fadeInUp delay-200">
-					<p className="text-xl md:text-2xl font-poppins text-gray-700 mb-12 max-w-2xl mx-auto">
+					<p className="text-xl md:text-2xl font-poppins text-gray-700 max-w-2xl mx-auto">
 						Giving every dress a second story.
+					</p>
+					<p className="text-sm md:text-md font-poppins text-red-700 mb-7">
+						Caution: All Dresses Here Are Pre-Owned
 					</p>
 				</div>
 
