@@ -25,6 +25,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
 
 		for (let i = 0; i < Math.min(files.length, remainingSlots); i++) {
 			const file = files[i];
+			console.log(file);
 			if (file.type.startsWith("image/")) {
 				const reader = new FileReader();
 				reader.onloadend = () => {
@@ -35,10 +36,6 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
 				};
 				reader.readAsDataURL(file);
 			}
-		}
-
-		if (fileInputRef.current) {
-			fileInputRef.current.value = "";
 		}
 	};
 
