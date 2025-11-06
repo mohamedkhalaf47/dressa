@@ -14,6 +14,9 @@ export const STORAGE_KEYS = {
 	RENT_REQUESTS: "dressa_rentRequests",
 	RENT_OUT_REQUESTS: "dressa_rentOutRequests",
 	ACTIVITY_LOG: "dressa_activityLog",
+	DRESS_REQUESTS: "dressa_dressRequests",
+	CONTACT_SUBMISSIONS: "dressa_contactSubmissions",
+	ADMIN_DRESSES: "dressa_adminDresses",
 };
 
 export const MAX_ACTIVITY_LOGS = 100;

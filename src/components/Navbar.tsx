@@ -20,30 +20,16 @@ export const Navbar: React.FC = () => {
 	const navigate = useNavigate();
 
 	const handleNavigation = (path: string, label: string) => {
-		if (path === "/" || !path.includes("#")) {
-			// Regular page navigation
-			navigate(path);
-		} else if (window.location.pathname === "/") {
-			// We're already on the home page, just scroll to the section
-			const sectionId = path.split("#")[1];
-			const element = document.getElementById(sectionId);
-			if (element) {
-				element.scrollIntoView({ behavior: "smooth" });
-			}
-		} else {
-			// Navigate to home page with hash
-			navigate(path);
-		}
-
+		navigate(path);
 		setIsMobileMenuOpen(false);
 		logActivity(ACTIVITY_ACTIONS.PAGE_LOAD, { path, section: label });
 	};
 
 	const navLinks = [
 		{ label: "Home", path: "/" },
-		{ label: "Dresses", path: "/#dresses" },
-		{ label: "Sell", path: "/#actions" },
-		{ label: "Contact", path: "/#footer" },
+		{ label: "Dresses", path: "/dresses" },
+		{ label: "About", path: "/about" },
+		{ label: "Contact", path: "/contact" },
 	];
 
 	return (

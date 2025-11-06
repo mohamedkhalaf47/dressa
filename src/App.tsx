@@ -8,6 +8,11 @@ import { RentForm } from "./components/RentForm";
 import { RentOutForm } from "./components/RentOutForm";
 import { HomePage } from "./pages/HomePage";
 import { DressPage } from "./pages/DressPage";
+import { DressesPage } from "./pages/DressesPage";
+import { DressRequestPage } from "./pages/DressRequestPage";
+import { AboutPage } from "./pages/AboutPage";
+import { ContactPage } from "./pages/ContactPage";
+import { AdminPage } from "./pages/AdminPage";
 import { logActivity, ACTIVITY_ACTIONS } from "./utils/activity";
 
 type ModalType = "buy" | "sell" | "rent" | "rentout" | null;
@@ -59,10 +64,12 @@ function App() {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<HomePage openModal={openModal} />} />
-				<Route
-					path="/dress/:id"
-					element={<DressPage openModal={openModal} />}
-				/>
+				<Route path="/dresses" element={<DressesPage />} />
+				<Route path="/dress/:id" element={<DressPage openModal={openModal} />} />
+				<Route path="/request-dress" element={<DressRequestPage />} />
+				<Route path="/about" element={<AboutPage />} />
+				<Route path="/contact" element={<ContactPage />} />
+				<Route path="/admin" element={<AdminPage />} />
 			</Routes>
 
 			<Modal

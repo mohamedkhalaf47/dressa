@@ -66,3 +66,25 @@ export interface ActivityLog {
 	timestamp: string;
 	userAgent: string;
 }
+
+export interface DressRequest {
+	id: string;
+	dressId: string;
+	dressName: string;
+	customerName: string;
+	email: string;
+	phone: string;
+	eventDate: string;
+	preferences: string;
+	timestamp: string;
+	status: 'pending' | 'contacted' | 'completed';
+}
+
+export interface ContactSubmission {
+	id: string;
+	name: string;
+	email: string;
+	subject: string;
+	message: string;
+	timestamp: string;
+}
